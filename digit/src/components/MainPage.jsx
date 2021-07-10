@@ -35,7 +35,7 @@ export default class MainPage extends Component {
     componentDidMount = async() => {
         console.log("check the API : ", process.env.REACT_APP_KEY)
         try {
-            const result = await fetch(`https://api.pexels.com/v1/search?query=${this.state.startQuery}&per_page=3`, {
+            await fetch(`https://api.pexels.com/v1/search?query=${this.state.startQuery}&per_page=3`, {
                 headers: {
                     Authorization:
                     `Bearer ${process.env.REACT_APP_KEY}`,
@@ -48,7 +48,7 @@ export default class MainPage extends Component {
                 console.log(data.photos[0].src);
             })
                 // Getting the total users;
-            const num_visit = await fetch(`https://digitbackend.herokuapp.com/users/60e99e35d667a66ab48b3abc`).then(data => data.json()).then(user => {
+            await fetch(`https://digitbackend.herokuapp.com/users/60e99e35d667a66ab48b3abc`).then(data => data.json()).then(user => {
                 console.log("data get for the  user variable",user.visitor);
                 this.setState({
                     visitor : user.visitor+1
@@ -57,7 +57,7 @@ export default class MainPage extends Component {
                 )
 
                 // Adding one more user 
-            const vistor_update = await fetch(`https://digitbackend.herokuapp.com/users/60e99e35d667a66ab48b3abc`, {
+                await fetch(`https://digitbackend.herokuapp.com/users/60e99e35d667a66ab48b3abc`, {
                 method : "PUT", 
                 body: JSON.stringify({
                     "visitor" : this.state.visitor
@@ -80,7 +80,7 @@ export default class MainPage extends Component {
  componentDidUpdate = async(prevProps, prevState) => {
      if (prevState.searchQuery !== this.state.searchQuery) {
         try {
-            const result = await fetch(`https://api.pexels.com/v1/search?query=${this.state.searchQuery}&per_page=3`, {
+            await fetch(`https://api.pexels.com/v1/search?query=${this.state.searchQuery}&per_page=3`, {
                 headers: {
                     Authorization:
                     `Bearer ${process.env.REACT_APP_KEY}`,
