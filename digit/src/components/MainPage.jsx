@@ -110,7 +110,7 @@ export default class MainPage extends Component {
                         <Row>
                                             {/* Side Bar Secion */}
                             <Col lg={3} md={3} sm={12} className="p-2 sidebar-cards">
-                                <Row className="d-flex justify-content-around">
+                                <Row className="flex-column justify-content-around">
                                     {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<SideBar  element={photo} selectedUrl={(props) => {
                                         this.setState({
                                             selectedUrl : props
