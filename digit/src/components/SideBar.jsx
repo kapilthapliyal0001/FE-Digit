@@ -8,7 +8,7 @@ export default class SideBar extends Component {
             <Row className = "my-3"onClick={() => {
                 this.props.selectedUrl(this.props.element.src.large)   // state lifting props on click
             }}>
-                <img src={this.props.element.src.small} alt="" fluid/>
+                <img className="img-thumbnail" src={this.props.element.src.small} alt="" fluid/>
             </Row>
         )
     }

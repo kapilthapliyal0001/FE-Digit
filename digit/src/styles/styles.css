@@ -11,4 +11,5 @@ background: linear-gradient(265deg, rgba(175,175,175,1) 24%, rgba(114,120,133,1)
 .shadow {
 box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);;
 }
+
 .grow:hover,.hvr-grow:focus,.hvr-grow:active { transform: scale(1.1); }

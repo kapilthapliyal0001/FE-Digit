@@ -9,10 +9,10 @@ export default class Card extends Component {
     
     render() {
         return (
-            <Col lg={4} md={4} sm={4} onClick={() => {
+            <Col lg={4} md={4} sm={12} onClick={() => {
                 this.props.selectedUrl(this.props.element.src.large)  // State lifting props on Click
             }}>
-                <img src={this.props.element.src.small} alt="" fluid/>
+                <img className="img-thumbnail" src={this.props.element.src.small} alt="" fluid/>
             </Col>
         )
     }
