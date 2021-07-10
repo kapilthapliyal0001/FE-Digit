@@ -14,6 +14,7 @@ import SideBar from './SideBar';
 // React Component
 export default class MainPage extends Component {
     state={
+        visitor: 0,
         searchQuery : "", 
         startQuery : "nature",
         isLoading : true,
@@ -46,6 +47,25 @@ export default class MainPage extends Component {
                 })
                 console.log(data.photos[0].src);
             })
+            const num_visit = await fetch(`https://digitbackend.herokuapp.com/users/60e99e35d667a66ab48b3abc`).then(data => data.json()).then(user => {
+                console.log("data get for the  user variable",user.visitor);
+                this.setState({
+                    visitor : user.visitor+1
+                })
+            return user.visitor}
+                )
+            const vistor_update = await fetch(`https://digitbackend.herokuapp.com/users/60e99e35d667a66ab48b3abc`, {
+                method : "PUT", 
+                body: JSON.stringify({
+                    "visitor" : this.state.visitor
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }).then(res => res.json()).then( update => {
+                console.log("The visitor has been update: ", update);
+            })
+                
 
         } catch (error) {
             console.log(error)
