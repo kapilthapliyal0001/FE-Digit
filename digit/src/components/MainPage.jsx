@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row ,Spinner, Image} from 'react-bootstrap';
+import { Container, Col, Row ,Spinner, Image, Badge} from 'react-bootstrap';
 
 // CSS import 
 import "../styles/styles.css"
@@ -119,6 +119,7 @@ export default class MainPage extends Component {
                         <Container className="main-body my-3">
                         
                                         {/* Buttons Component Starts*/}
+                                        <Badge variant="dark">Visitor No: {this.state.visitor}</Badge>
                         <Row className="d-flex justify-content-around"> 
                             <ImgButton selectIndex={props => {
                                 this.setState({
