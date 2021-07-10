@@ -133,7 +133,7 @@ export default class MainPage extends Component {
 
                                             {/* Bottom Images */}
                                 <Row className="d-flex justify-content-around my-2 bottom-cards">
-                                {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<Card  element={photo} selectedUrl={(props) => {
+                                {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<Card element={photo} selectedUrl={(props) => {
                                     this.setState({
                                         selectedUrl : props
                                     })
