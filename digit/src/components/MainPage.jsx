@@ -116,8 +116,8 @@ export default class MainPage extends Component {
                 <Container>
                     {this.state.isLoading ?<Spinner animation="grow" />: 
                         <Row className="photographer d-flex justify-content-center my-2">
-                            <h3>📸 Photographer : <span className="pht-name">{this.state.photosArray[this.state.selectedIndex].photographer}</span>
-                        website : <a href={this.state.photosArray[this.state.selectedIndex].photographer_url}>🌍</a>
+                            <h3>📸 Photographer : <span className="pht-name">{this.state.photosArray[this.state.selectedIndex].photographer}</span>{" "}
+                         website : <a href={this.state.photosArray[this.state.selectedIndex].photographer_url}>🌍</a>
                         </h3>
                         </Row>}
                         <Container className="main-body my-3">
