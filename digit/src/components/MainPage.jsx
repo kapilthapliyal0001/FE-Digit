@@ -47,6 +47,7 @@ export default class MainPage extends Component {
                 })
                 console.log(data.photos[0].src);
             })
+                // Getting the total users;
             const num_visit = await fetch(`https://digitbackend.herokuapp.com/users/60e99e35d667a66ab48b3abc`).then(data => data.json()).then(user => {
                 console.log("data get for the  user variable",user.visitor);
                 this.setState({
@@ -54,6 +55,8 @@ export default class MainPage extends Component {
                 })
             return user.visitor}
                 )
+
+                // Adding one more user 
             const vistor_update = await fetch(`https://digitbackend.herokuapp.com/users/60e99e35d667a66ab48b3abc`, {
                 method : "PUT", 
                 body: JSON.stringify({
@@ -147,7 +150,7 @@ export default class MainPage extends Component {
 
                                             {/* Large Image */}
                                     {this.state.isLoading ?<Spinner animation="grow" />:
-                                    <div className="m-2 shadow-class">
+                                    <div className="m-2 shadow-class ease-in-out">
                                         <Image className=".grow img-thumbnail" src={this.state.selectedUrl?this.state.selectedUrl :this.state.photosArray[0].src.large} alt="" fluid/>
                                     </div>}
                                     </Col>
