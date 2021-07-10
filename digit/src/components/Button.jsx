@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row , Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
 
 export default class ImgButton extends Component {

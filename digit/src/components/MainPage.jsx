@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row , Button, Spinner, Image} from 'react-bootstrap';
+import { Container, Col, Row ,Spinner, Image} from 'react-bootstrap';
 
 // CSS import 
 import "../styles/styles.css"

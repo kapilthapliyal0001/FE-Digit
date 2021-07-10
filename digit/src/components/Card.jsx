@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row , Button, Spinner, Image} from 'react-bootstrap';
+import { Col, Image} from 'react-bootstrap';
 
 export default class Card extends Component {
     componentDidMount() {
@@ -12,7 +12,7 @@ export default class Card extends Component {
             <Col className="my-2" lg={4} md={4} sm={12} onClick={() => {
                 this.props.selectedUrl(this.props.element.src.large)  // State lifting props on Click
             }}>
-                <img className="img-thumbnail img-fluid" src={this.props.element.src.small} alt="" fluid/>
+                <Image className="img-thumbnail img-fluid" src={this.props.element.src.small} alt="" fluid/>
             </Col>
         )
     }
