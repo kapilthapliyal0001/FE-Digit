@@ -88,6 +88,7 @@ export default class MainPage extends Component {
             }).then(res => res.json()).then(data => {
                 this.setState({
                     photosArray : data.photos,
+                    selectedUrl:  data.photos[0].src.large,
                     isLoading : false
                 })
                 console.log(data.photos[0].src);
@@ -116,7 +117,7 @@ export default class MainPage extends Component {
                     {this.state.isLoading ?<Spinner animation="grow" />: 
                         <Row className="photographer d-flex justify-content-center my-2">
                             <h3>📸 Photographer : <span className="pht-name">{this.state.photosArray[this.state.selectedIndex].photographer}</span>
-                        website : <a href={this.state.photosArray[this.state.selectedIndex].photographer_url}>here</a>
+                        website : <a href={this.state.photosArray[this.state.selectedIndex].photographer_url}>🌍</a>
                         </h3>
                         </Row>}
                         <Container className="main-body my-3">
