@@ -3,9 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Image} from 'react-bootstrap';
 
 export default class Card extends Component {
-    componentDidMount() {
-        console.log(this.props.element)
-    }
     
     render() {
         return (

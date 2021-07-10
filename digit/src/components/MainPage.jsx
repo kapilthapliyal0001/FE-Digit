@@ -33,7 +33,7 @@ export default class MainPage extends Component {
 
     // fetching
     componentDidMount = async() => {
-        console.log("check the API : ", process.env.REACT_APP_KEY)
+
         try {
             await fetch(`https://api.pexels.com/v1/search?query=${this.state.startQuery}&per_page=3`, {
                 headers: {
@@ -45,11 +45,9 @@ export default class MainPage extends Component {
                     photosArray : data.photos,
                     isLoading : false
                 })
-                console.log(data.photos[0].src);
             })
                 // Getting the total users;
             await fetch(`https://digitbackend.herokuapp.com/users/60e99e35d667a66ab48b3abc`).then(data => data.json()).then(user => {
-                console.log("data get for the  user variable",user.visitor);
                 this.setState({
                     visitor : user.visitor+1
                 })
@@ -65,8 +63,6 @@ export default class MainPage extends Component {
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }
-            }).then(res => res.json()).then( update => {
-                console.log("The visitor has been update: ", update);
             })
                 
 
@@ -91,7 +87,6 @@ export default class MainPage extends Component {
                     selectedUrl:  data.photos[0].src.large,
                     isLoading : false
                 })
-                console.log(data.photos[0].src);
             })
         } catch (error) {
             console.log(error)
@@ -137,7 +132,7 @@ export default class MainPage extends Component {
                                             {/* Side Bar Secion */}
                             <Col lg={3} md={3} sm={12} className="p-2 sidebar-cards">
                                 <Row className="flex-column justify-content-around">
-                                    {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<SideBar  element={photo} selectedUrl={(props) => {
+                                    {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<SideBar key={photo.id}  element={photo} selectedUrl={(props) => {
                                         this.setState({
                                             selectedUrl : props
                                     })
@@ -159,7 +154,7 @@ export default class MainPage extends Component {
 
                                             {/* Bottom Images */}
                                 <Row className="d-flex justify-content-around my-2 bottom-cards">
-                                {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<Card element={photo} selectedUrl={(props) => {
+                                {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<Card key={photo.id} element={photo} selectedUrl={(props) => {
                                     this.setState({
                                         selectedUrl : props
                                     })
