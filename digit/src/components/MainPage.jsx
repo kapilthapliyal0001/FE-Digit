@@ -115,8 +115,8 @@ export default class MainPage extends Component {
                 <Container>
                     {this.state.isLoading ?<Spinner animation="grow" />: 
                         <Row className="photographer d-flex justify-content-center my-2">
-                            <h3>Photographer : {this.state.photosArray[this.state.selectedIndex].photographer}
-                        and his website : <a href={this.state.photosArray[this.state.selectedIndex].photographer_url}>here</a>
+                            <h3>📸 Photographer : <span className="pht-name">{this.state.photosArray[this.state.selectedIndex].photographer}</span>
+                        website : <a href={this.state.photosArray[this.state.selectedIndex].photographer_url}>here</a>
                         </h3>
                         </Row>}
                         <Container className="main-body my-3">
@@ -150,7 +150,7 @@ export default class MainPage extends Component {
 
                                             {/* Large Image */}
                                     {this.state.isLoading ?<Spinner animation="grow" />:
-                                    <div className="m-2 shadow-class ease-in-out">
+                                    <div className="m-2 shadow-class">
                                         <Image className=".grow img-thumbnail" src={this.state.selectedUrl?this.state.selectedUrl :this.state.photosArray[0].src.large} alt="" fluid/>
                                     </div>}
                                     </Col>

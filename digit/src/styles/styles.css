@@ -16,8 +16,14 @@ box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);;
 .ease-in-out:hover{  
     /* color: black; */
     transform: scale(1.05);
+    /* box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);  */
+    
 }
 
 .ease-in-out {
     transition: transform 330ms ease-in-out;
+}
+
+.pht-name {
+    color: rgb(201, 206, 207);
 }
