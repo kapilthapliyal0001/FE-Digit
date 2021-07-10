@@ -11,7 +11,7 @@ import Card from './Card';
 import ImgButton from "../components/Button"
 import SideBar from './SideBar';
 
-// RCC
+// React Component
 export default class MainPage extends Component {
     state={
         searchQuery : "", 
@@ -23,12 +23,14 @@ export default class MainPage extends Component {
         
     }
 
+    //  on button click state change
     selectIndex = (e) => {
         this.setState({
             selectedIndex : e
         })
     }
 
+    // fetching
     componentDidMount = async() => {
         try {
             const result = await fetch(`https://api.pexels.com/v1/search?query=${this.state.startQuery}&per_page=3`, {
@@ -49,6 +51,7 @@ export default class MainPage extends Component {
         }
     }
     
+// For every keystore fetching + two ways data binding at Component Level;
 
  componentDidUpdate = async(prevProps, prevState) => {
      if (prevState.searchQuery !== this.state.searchQuery) {
