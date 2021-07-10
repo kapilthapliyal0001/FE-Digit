@@ -2,18 +2,14 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row , Button, Spinner, Image} from 'react-bootstrap';
 
-export default class Card extends Component {
-    componentDidMount() {
-        console.log(this.props.element)
-    }
-    
+export default class SideBar extends Component {
     render() {
         return (
-            <Col lg={4} md={4} sm={4} onClick={() => {
+            <Row onClick={() => {
                 this.props.selectedUrl(this.props.element.src.large)
             }}>
                 <img src={this.props.element.src.small} alt="" fluid/>
-            </Col>
+            </Row>
         )
     }
 }

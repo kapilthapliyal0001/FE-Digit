@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Col, Row , Button, Spinner, Image} from 'react-bootstrap';
+
+// Components Imports
 import Navbar from '../components/Navbar';
 import Card from './Card';
-import { Container, Col, Row , Button, Spinner, Image} from 'react-bootstrap';
+import ImgButton from "../components/Button"
+import SideBar from './SideBar';
+
+// RCC
 export default class MainPage extends Component {
     state={
         searchQuery : "", 
         startQuery : "nature",
         isLoading : true,
         photosArray : null,
-        selectedIndex : 0
+        selectedIndex : 0,
+        selectedUrl : null
         
     }
 
@@ -55,7 +62,6 @@ export default class MainPage extends Component {
                 })
                 console.log(data.photos[0].src);
             })
-    
         } catch (error) {
             console.log(error)
         }
@@ -67,44 +73,68 @@ export default class MainPage extends Component {
 
     render() {
         return (
-            <div>
+            <>  
+            {/* NavBar Section */}
                 <Navbar searchQuery={(props) => {
                     this.setState({
                         searchQuery : props
                     });
-                    // this.updateSearch()
                 }}/>
-                {this.state.isLoading ?<Spinner animation="grow" />: 
-                 <Row className="photographer">
-                     <h3>Photographer : {this.state.photosArray[this.state.selectedIndex].photographer}
-                 and his website : <a href={this.state.photosArray[this.state.selectedIndex].photographer_url}>here</a>
-                 </h3>
-                 </Row>
- }
-                
-                <Container className="main-body my-3">
-                    <Row className="justify-content-around my-1"> 
-                    <Button variant="light" onClick={(e) => this.selectIndex(0)}>Image 1</Button>
-                    <Button variant="light" onClick={(e) => this.selectIndex(1)}>Image 2</Button>
-                    <Button variant="light" onClick={(e) => this.selectIndex(2)}>Image 3</Button>
-                    </Row> 
-                     {this.state.isLoading ?<Spinner animation="grow" />:<></>}
-                    <Row>
-                            <Col lg={3} md={3} sm={12} className="p-2"><h3>The Sidebar</h3></Col>
+
+                {/* Loaders Section  for every keystroke and and asyncrnous fetch*/}
+                <Container className="text-center">
+                    {this.state.isLoading ?<Spinner animation="grow" />: 
+                        <Row className="photographer text-center my-2">
+                            <h3>Photographer : {this.state.photosArray[this.state.selectedIndex].photographer}
+                        and his website : <a href={this.state.photosArray[this.state.selectedIndex].photographer_url}>here</a>
+                        </h3>
+                        </Row>}
+                        <Container className="main-body my-3">
+                        <Row className=""> 
+
+                        {/* Buttons Component Starts*/}
+                            <ImgButton selectIndex={props => {
+                                this.setState({
+                                    selectedUrl:this.state.photosArray[props].src.large,
+                                    selectIndex: props
+                                })
+                            }}/>
+                        </Row> 
+                            {this.state.isLoading ?<Spinner animation="grow" />:<></>}
+                        <Row>
+                            {/* Side Bar Secion */}
+                            <Col lg={3} md={3} sm={12} className="p-2">
+                                <Row className="d-flex justify-content-around">
+                                    {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<Card  element={photo} selectedUrl={(props) => {
+                                        this.setState({
+                                            selectedUrl : props
+                                    })
+                                    }}/>))}
+                                </Row>
+                            </Col>
+                            {/* Main Section  */}
                             <Col lg={9} md={9} sm={12} className="p-2">
                                 <Row>
                                     <Col lg={12} md= {12} sm={12}>
-                                        <h3>Main image</h3>
+                                    {this.state.isLoading ?<Spinner animation="grow" />:
+                                    <div className="m-2">
+                                        <img src={this.state.selectedUrl?this.state.selectedUrl :this.state.photosArray[0].src.large} alt="" fluid/>
+                                    </div>}
                                     </Col>
                                 </Row>
-                                <Row>
-                                {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<Card element={photo}/>))}
+                                <Row className="d-flex justify-content-around">
+                                {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<Card  element={photo} selectedUrl={(props) => {
+                                    this.setState({
+                                        selectedUrl : props
+                                    })
+                                }}/>))}
                                 </Row>
                             </Col>
                         </Row>   
-                   
+                    </Container>
                 </Container>
-            </div>
+                
+            </>
         )
     }
 }
