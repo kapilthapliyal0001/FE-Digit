@@ -125,7 +125,7 @@ export default class MainPage extends Component {
 
                                             {/* Large Image */}
                                     {this.state.isLoading ?<Spinner animation="grow" />:
-                                    <div className="m-2">
+                                    <div className="m-2 shadow">
                                         <Image className=".grow" src={this.state.selectedUrl?this.state.selectedUrl :this.state.photosArray[0].src.large} alt="" fluid/>
                                     </div>}
                                     </Col>
