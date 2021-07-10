@@ -32,11 +32,12 @@ export default class MainPage extends Component {
 
     // fetching
     componentDidMount = async() => {
+        console.log("check the API : ", process.env.REACT_APP_KEY)
         try {
             const result = await fetch(`https://api.pexels.com/v1/search?query=${this.state.startQuery}&per_page=3`, {
                 headers: {
                     Authorization:
-                      "Bearer 563492ad6f917000010000017f488949f5c24f7cb9fc4ad4069c1050",
+                    `Bearer ${process.env.REACT_APP_KEY}`,
                   }
             }).then(res => res.json()).then(data => {
                 this.setState({
@@ -59,7 +60,7 @@ export default class MainPage extends Component {
             const result = await fetch(`https://api.pexels.com/v1/search?query=${this.state.searchQuery}&per_page=3`, {
                 headers: {
                     Authorization:
-                      "Bearer 563492ad6f917000010000017f488949f5c24f7cb9fc4ad4069c1050",
+                    `Bearer ${process.env.REACT_APP_KEY}`,
                   }
             }).then(res => res.json()).then(data => {
                 this.setState({
