@@ -5,7 +5,7 @@ import { Container, Col, Row , Button, Spinner, Image} from 'react-bootstrap';
 export default class SideBar extends Component {
     render() {
         return (
-            <Row onClick={() => {
+            <Row className = "my-3"onClick={() => {
                 this.props.selectedUrl(this.props.element.src.large)
             }}>
                 <img src={this.props.element.src.small} alt="" fluid/>

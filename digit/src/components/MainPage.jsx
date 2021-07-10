@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row , Button, Spinner, Image} from 'react-bootstrap';
 
+// CSS import 
+import "../styles/styles.css"
+
 // Components Imports
 import Navbar from '../components/Navbar';
 import Card from './Card';
@@ -105,7 +108,7 @@ export default class MainPage extends Component {
                             {/* Side Bar Secion */}
                             <Col lg={3} md={3} sm={12} className="p-2">
                                 <Row className="d-flex justify-content-around">
-                                    {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<Card  element={photo} selectedUrl={(props) => {
+                                    {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<SideBar  element={photo} selectedUrl={(props) => {
                                         this.setState({
                                             selectedUrl : props
                                     })
@@ -118,7 +121,7 @@ export default class MainPage extends Component {
                                     <Col lg={12} md= {12} sm={12}>
                                     {this.state.isLoading ?<Spinner animation="grow" />:
                                     <div className="m-2">
-                                        <img src={this.state.selectedUrl?this.state.selectedUrl :this.state.photosArray[0].src.large} alt="" fluid/>
+                                        <img className=".grow" src={this.state.selectedUrl?this.state.selectedUrl :this.state.photosArray[0].src.large} alt="" fluid/>
                                     </div>}
                                     </Col>
                                 </Row>
