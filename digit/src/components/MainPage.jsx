@@ -76,26 +76,26 @@ export default class MainPage extends Component {
 
     render() {
         return (
-            <>  
-            {/* NavBar Section */}
+            <div className="home">  
+                                        {/* NavBar Section */}
                 <Navbar searchQuery={(props) => {
                     this.setState({
                         searchQuery : props
                     });
                 }}/>
 
-                {/* Loaders Section  for every keystroke and and asyncrnous fetch*/}
-                <Container className="text-center">
+                                        {/* Loaders Section for every keystroke + stateLifting and and asyncrnous fetch*/}
+                <Container>
                     {this.state.isLoading ?<Spinner animation="grow" />: 
-                        <Row className="photographer text-center my-2">
+                        <Row className="photographer d-flex justify-content-center my-2">
                             <h3>Photographer : {this.state.photosArray[this.state.selectedIndex].photographer}
                         and his website : <a href={this.state.photosArray[this.state.selectedIndex].photographer_url}>here</a>
                         </h3>
                         </Row>}
                         <Container className="main-body my-3">
-                        <Row className=""> 
-
-                        {/* Buttons Component Starts*/}
+                        
+                                        {/* Buttons Component Starts*/}
+                        <Row className="d-flex justify-content-around"> 
                             <ImgButton selectIndex={props => {
                                 this.setState({
                                     selectedUrl:this.state.photosArray[props].src.large,
@@ -105,8 +105,8 @@ export default class MainPage extends Component {
                         </Row> 
                             {this.state.isLoading ?<Spinner animation="grow" />:<></>}
                         <Row>
-                            {/* Side Bar Secion */}
-                            <Col lg={3} md={3} sm={12} className="p-2">
+                                            {/* Side Bar Secion */}
+                            <Col lg={3} md={3} sm={12} className="p-2 sidebar-cards">
                                 <Row className="d-flex justify-content-around">
                                     {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<SideBar  element={photo} selectedUrl={(props) => {
                                         this.setState({
@@ -115,17 +115,21 @@ export default class MainPage extends Component {
                                     }}/>))}
                                 </Row>
                             </Col>
-                            {/* Main Section  */}
+                                            {/* Main Image Section  */}
                             <Col lg={9} md={9} sm={12} className="p-2">
                                 <Row>
                                     <Col lg={12} md= {12} sm={12}>
+
+                                            {/* Large Image */}
                                     {this.state.isLoading ?<Spinner animation="grow" />:
                                     <div className="m-2">
-                                        <img className=".grow" src={this.state.selectedUrl?this.state.selectedUrl :this.state.photosArray[0].src.large} alt="" fluid/>
+                                        <Image className=".grow" src={this.state.selectedUrl?this.state.selectedUrl :this.state.photosArray[0].src.large} alt="" fluid/>
                                     </div>}
                                     </Col>
                                 </Row>
-                                <Row className="d-flex justify-content-around">
+
+                                            {/* Small Images */}
+                                <Row className="d-flex justify-content-around my-2 bottom-cards">
                                 {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<Card  element={photo} selectedUrl={(props) => {
                                     this.setState({
                                         selectedUrl : props
@@ -137,7 +141,7 @@ export default class MainPage extends Component {
                     </Container>
                 </Container>
                 
-            </>
+            </div>
         )
     }
 }

@@ -37,9 +37,7 @@ export default class MyNav extends Component {
                             this.props.searchQuery(e.target.value)
                         }
                             } />
-                        <Button variant="outline-success" onClick={() => {
-                            this.props.searchQuery(this.props.search)
-                        }}>Search</Button>
+                        {/* <Button variant="outline-success">Search</Button> */}
                         </Form>
                     </Navbar.Collapse>
                 </Navbar>
