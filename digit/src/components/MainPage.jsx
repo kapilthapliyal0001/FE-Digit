@@ -38,6 +38,32 @@ export default class MainPage extends Component {
             console.log(error)
         }
     }
+    
+
+ componentDidUpdate = async(prevProps, prevState) => {
+     if (prevState.searchQuery !== this.state.searchQuery) {
+        try {
+            const result = await fetch(`https://api.pexels.com/v1/search?query=${this.state.searchQuery}&per_page=3`, {
+                headers: {
+                    Authorization:
+                      "Bearer 563492ad6f917000010000017f488949f5c24f7cb9fc4ad4069c1050",
+                  }
+            }).then(res => res.json()).then(data => {
+                this.setState({
+                    photosArray : data.photos,
+                    isLoading : false
+                })
+                console.log(data.photos[0].src);
+            })
+    
+        } catch (error) {
+            console.log(error)
+        }
+     } else {
+         console.log("Stopped the infintie loop")
+     }
+ }
+ 
 
     render() {
         return (
@@ -45,9 +71,16 @@ export default class MainPage extends Component {
                 <Navbar searchQuery={(props) => {
                     this.setState({
                         searchQuery : props
-                    })
+                    });
+                    // this.updateSearch()
                 }}/>
-                {this.state.isLoading ?<Spinner animation="grow" />:<> </>}
+                {this.state.isLoading ?<Spinner animation="grow" />: 
+                 <Row className="photographer">
+                     <h3>Photographer : {this.state.photosArray[this.state.selectedIndex].photographer}
+                 and his website : <a href={this.state.photosArray[this.state.selectedIndex].photographer_url}>here</a>
+                 </h3>
+                 </Row>
+ }
                 
                 <Container className="main-body my-3">
                     <Row className="justify-content-around my-1"> 
@@ -65,17 +98,7 @@ export default class MainPage extends Component {
                                     </Col>
                                 </Row>
                                 <Row>
-                                {this.state.isLoading ? <></> : this.state.photosArray.map(photo => 
-                                <Card/>)}
-                                   {/* <Col lg={4} md={4} sm={4}>
-                                   {this.state.isLoading ?<></>:<Card/>}
-                                   </Col> 
-                                   <Col lg={4} md={4} sm={4}>
-                                   {this.state.isLoading ?<></>:<Card/>}
-                                   </Col>
-                                   <Col lg={4} md={4} sm={4}>
-                                   {this.state.isLoading ?<></>:<Card/>}
-                                   </Col> */}
+                                {this.state.isLoading ? <></> : this.state.photosArray.map(photo => (<Card element={photo}/>))}
                                 </Row>
                             </Col>
                         </Row>   
