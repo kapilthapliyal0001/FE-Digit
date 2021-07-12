@@ -110,10 +110,10 @@ export default class MainPage extends Component {
 
   // For every keystore fetching + two ways data binding at Component Level;
 
-  componentDidUpdate = async (prevProps, prevState) => {
+  componentDidUpdate = (prevProps, prevState) => {
     if (prevState.searchQuery !== this.state.searchQuery) {
       try {
-        await fetch(
+        fetch(
           `https://api.pexels.com/v1/search?query=${this.state.searchQuery}&per_page=3`,
           {
             headers: {
