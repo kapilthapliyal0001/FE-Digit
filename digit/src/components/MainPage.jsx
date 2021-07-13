@@ -54,6 +54,7 @@ export default class MainPage extends Component {
             photosArray: data.photos,
             isLoading: false,
           });
+          console.log(data.photos);
         })
         .catch((error) => {
           console.log("Error in the Fetch API !");
@@ -113,8 +114,15 @@ export default class MainPage extends Component {
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.searchQuery !== this.state.searchQuery) {
       try {
+        if (this.state.searchQuery === "") {
+          this.setState({
+            searchQuery: "nature",
+          });
+        }
         fetch(
-          `https://api.pexels.com/v1/search?query=${this.state.searchQuery}&per_page=3`,
+          `https://api.pexels.com/v1/search?query=${
+            this.state.searchQuery === "" ? "nature" : this.state.searchQuery
+          }&per_page=3`,
           {
             headers: {
               Authorization: `Bearer ${process.env.REACT_APP_KEY}`,
@@ -220,7 +228,7 @@ export default class MainPage extends Component {
                     ) : (
                       <div className="m-2 shadow-class">
                         <Image
-                          className=".grow img-thumbnail"
+                          className=".grow img-thumbnail img-main"
                           src={
                             this.state.selectedUrl
                               ? this.state.selectedUrl
